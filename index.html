@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JalRakshak AI</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#eef5f9;color:#12304a}
+header{background:#073b5c;color:white;padding:20px 6%;display:flex;justify-content:space-between;align-items:center}
+.brand{font-size:26px;font-weight:bold}.online{background:#145579;padding:9px 14px;border-radius:20px;font-size:13px}
+main{max-width:1100px;margin:auto;padding:25px 18px}
+.hero{background:linear-gradient(135deg,#075985,#0e7490);color:white;padding:28px;border-radius:18px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:center}
+.hero h1{margin:0 0 8px;font-size:32px}.hero p{margin:0;opacity:.9}
+button{background:white;color:#075985;border:0;border-radius:9px;padding:14px 20px;font-weight:bold;cursor:pointer;font-size:15px}
+.grid{display:grid;gap:16px}.metrics{grid-template-columns:repeat(4,1fr);margin-bottom:16px}
+.card{background:white;border:1px solid #dbe6ed;border-radius:14px;padding:18px;box-shadow:0 4px 15px #12345612}
+.metric span{color:#718096;font-size:13px}.metric strong{display:block;font-size:29px;margin:8px 0}.metric small{color:#718096}
+.two{grid-template-columns:1.3fr 1fr;margin-bottom:16px}.three{grid-template-columns:1fr 1fr}
+h2{font-size:18px;margin:0 0 16px}.head{display:flex;justify-content:space-between}
+.pipeline{display:flex;align-items:center;margin:30px 0}.node{width:90px;height:90px;border-radius:50%;border:7px solid #9be2bd;background:#effcf4;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:12px;text-align:center}.node.bad{border-color:#f08a8a;background:#fff0f0}.line{height:8px;background:#68b2d0;flex:1}
+.box{background:#f4f8fb;border-radius:10px;padding:13px;margin-top:10px}
+.diagnosis{display:flex;gap:18px;align-items:center}.score{width:88px;height:88px;border-radius:50%;border:9px solid #35b77b;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:bold;flex:none}
+.diagnosis p{color:#64748b;line-height:1.5;font-size:13px}.barrow{display:flex;align-items:center;gap:10px;margin:13px 0;font-size:12px}.barrow label{width:70px}.bar{height:10px;background:#e8eef3;border-radius:10px;flex:1}.fill{height:100%;background:#1686ad;border-radius:10px}
+.alert{background:#fff0f0;border-radius:9px;padding:11px;margin:8px 0;font-size:13px}.safe{background:#eefaf3;color:#28734e}
+footer{text-align:center;color:#718096;font-size:12px;padding:25px}
+@media(max-width:800px){.metrics,.two,.three{grid-template-columns:1fr 1fr}.hero{flex-direction:column;align-items:flex-start;gap:20px}}
+@media(max-width:520px){.metrics,.two,.three{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+<div><div class="brand">💧 JalRakshak AI</div><small>AI + IoT Smart Water Pipeline Protection</small></div>
+<div class="online">● System Online</div>
+</header>
+<main>
+<section class="hero">
+<div><h1>Detect. Locate. Predict. Protect.</h1><p>Smart pipeline monitoring and AI-based leakage detection prototype.</p></div>
+<button onclick="scan()">▶ Run AI Scan</button>
+</section>
+
+<section class="grid metrics">
+<div class="card metric"><span>Flow Rate</span><strong id="flow">120</strong><small>L/min</small></div>
+<div class="card metric"><span>Pressure</span><strong id="pressure">4.8</strong><small>bar</small></div>
+<div class="card metric"><span>Vibration</span><strong id="vibration">0.18</strong><small>mm/s</small></div>
+<div class="card metric"><span>AI Leak Probability</span><strong id="prob">8%</strong><small id="risk">Normal</small></div>
+</section>
+
+<section class="grid two">
+<div class="card">
+<div class="head"><h2>Pipeline Network</h2><b id="state">Healthy</b></div>
+<div class="pipeline">
+<div class="node" id="n1">Zone 1<br><small>Residential</small></div><div class="line"></div>
+<div class="node" id="n2">Zone 2<br><small>Industrial</small></div><div class="line"></div>
+<div class="node" id="n3">Zone 3<br><small>Commercial</small></div><div class="line"></div>
+<div class="node" id="n4">Zone 4<br><small>Rural</small></div>
+</div>
+<div class="box"><b>Affected Zone:</b> <span id="zone">None detected</span><br>
+<b>Estimated Water Loss:</b> <span id="loss">0 L/min</span></div>
+</div>
+
+<div class="card">
+<h2>AI Diagnosis</h2>
+<div class="diagnosis"><div class="score" id="score">92</div><div><h3 id="title">Pipeline Normal</h3><p id="desc">Sensor readings are within expected limits. No significant anomaly detected.</p></div></div>
+<div class="box"><b>Recommended Action</b><p id="action">Continue routine monitoring.</p></div>
+</div>
+</section>
+
+<section class="grid three">
+<div class="card"><h2>Live Sensor Feed</h2>
+<div class="barrow"><label>Flow</label><div class="bar"><div class="fill" id="b1" style="width:80%"></div></div></div>
+<div class="barrow"><label>Pressure</label><div class="bar"><div class="fill" id="b2" style="width:80%"></div></div></div>
+<div class="barrow"><label>Vibration</label><div class="bar"><div class="fill" id="b3" style="width:18%"></div></div></div>
+<div class="barrow"><label>Acoustic</label><div class="bar"><div class="fill" id="b4" style="width:12%"></div></div></div>
+</div>
+<div class="card"><h2>Alerts</h2><div id="alerts" class="safe">✓ No active alerts.</div></div>
+</section>
+</main>
+<footer>JalRakshak AI • Global Innovation Hackathon 2026 • Working Prototype</footer>
+
+<script>
+function scan(){
+ let leak=Math.random()>0.3;
+ let ids=["n1","n2","n3","n4"];
+ ids.forEach(x=>document.getElementById(x).className="node");
+ if(!leak){
+  document.getElementById("flow").textContent="120";
+  document.getElementById("pressure").textContent="4.8";
+  document.getElementById("vibration").textContent="0.18";
+  document.getElementById("prob").textContent="8%";
+  document.getElementById("risk").textContent="Normal";
+  document.getElementById("state").textContent="Healthy";
+  document.getElementById("zone").textContent="None detected";
+  document.getElementById("loss").textContent="0 L/min";
+  document.getElementById("score").textContent="92";
+  document.getElementById("title").textContent="Pipeline Normal";
+  document.getElementById("desc").textContent="Sensor readings are within expected limits. No significant anomaly detected.";
+  document.getElementById("action").textContent="Continue routine monitoring.";
+  document.getElementById("alerts").className="safe";
+  document.getElementById("alerts").textContent="✓ No active alerts.";
+ }else{
+  let i=Math.floor(Math.random()*4), names=["Zone 1","Zone 2","Zone 3","Zone 4"];
+  document.getElementById(ids[i]).className="node bad";
+  let pr=86+Math.floor(Math.random()*10), loss=42+Math.floor(Math.random()*28);
+  document.getElementById("flow").textContent="78";
+  document.getElementById("pressure").textContent="2.7";
+  document.getElementById("vibration").textContent="0.92";
+  document.getElementById("prob").textContent=pr+"%";
+  document.getElementById("risk").textContent="Leak suspected";
+  document.getElementById("state").textContent="⚠ Leak Detected";
+  document.getElementById("zone").textContent=names[i];
+  document.getElementById("loss").textContent=loss+" L/min";
+  document.getElementById("score").textContent=(100-pr);
+  document.getElementById("title").textContent="Possible Pipeline Leakage";
+  document.getElementById("desc").textContent="AI detected an abnormal combination of pressure, flow and vibration readings.";
+  document.getElementById("action").textContent="Inspect the affected zone and schedule maintenance.";
+  document.getElementById("alerts").className="alert";
+  document.getElementById("alerts").textContent="🚨 Leak probability "+pr+"% detected in "+names[i]+". Estimated loss: "+loss+" L/min.";
+ }
+}
+</script>
+</body>
+</html>
