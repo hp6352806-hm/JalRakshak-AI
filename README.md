@@ -1,39 +1,61 @@
-# JalRakshak AI
+# 💧 JalRakshak AI
 
-## Global Innovation Hackathon 2026 – Build for a Better Future
+### AI + IoT Smart Water Pipeline Leakage Detection & Predictive Maintenance System
 
-JalRakshak AI is an AI + IoT concept for detecting, locating and prioritizing water-pipeline leakage.
+> **Detect. Locate. Predict. Protect.**
 
-### Problem
-Water losses from hidden pipeline leaks can remain undetected for long periods. Manual inspection is slow and does not continuously monitor pressure, flow and vibration patterns.
+JalRakshak AI is an AI + IoT based smart water pipeline monitoring system designed to detect possible water leakage at an early stage, identify the affected pipeline zone, estimate water loss and recommend maintenance actions.
 
-### Proposed Solution
-IoT sensor nodes collect flow, pressure, vibration and acoustic data. An AI anomaly-detection layer compares current readings against normal patterns, estimates leak probability, identifies the most likely affected zone and provides a severity level and maintenance recommendation.
+## 🚨 Problem
 
-### Prototype Features
-- Live sensor dashboard
-- AI leak probability
-- Pipeline zone visualization
-- Estimated water loss
-- Severity classification
-- Maintenance recommendation
-- Alert panel
-- Simulated IoT data for demonstration
+Water leakage from underground and municipal pipelines can remain undetected for long periods.
 
-### Hardware for Future Deployment
-- ESP32 / NodeMCU
-- Flow sensor
-- Pressure sensor
-- Vibration sensor
-- Acoustic sensor
-- Wi-Fi / MQTT
-- Cloud database/dashboard
+Traditional inspection methods:
+- Depend heavily on manual inspection
+- May detect leaks after significant water loss
+- Cannot continuously monitor pipeline conditions
+- Make it difficult to identify the exact affected zone quickly
 
-### Run Locally
-Open `index.html` in a modern browser.
+This can result in unnecessary water loss, infrastructure damage and higher maintenance costs.
 
-### Demo
-Click **Run AI Scan** to simulate a new AI analysis. The dashboard also refreshes automatically.
+## 💡 Proposed Solution
 
-### Important
-This is a hackathon prototype using simulated sensor data. Real deployment requires calibrated sensors, a trained/validated anomaly model, secure IoT communication and field testing.
+JalRakshak AI continuously monitors pipeline parameters using IoT sensor data such as:
+
+- Flow rate
+- Pressure
+- Vibration
+- Acoustic signals
+
+An AI-based anomaly detection layer analyses these readings and identifies abnormal patterns.
+
+The system then:
+
+1. Detects abnormal pipeline behaviour
+2. Calculates leak probability
+3. Identifies the affected zone
+4. Estimates possible water loss
+5. Classifies the pipeline condition
+6. Provides a maintenance recommendation
+7. Displays alerts on the dashboard
+
+## ⚙️ System Workflow
+
+```text
+IoT Sensors
+     ↓
+Flow / Pressure / Vibration / Acoustic Data
+     ↓
+Data Processing
+     ↓
+AI Anomaly Detection
+     ↓
+Leak Probability
+     ↓
+Affected Zone Identification
+     ↓
+Water Loss Estimation
+     ↓
+AI Diagnosis
+     ↓
+Maintenance Recommendation
